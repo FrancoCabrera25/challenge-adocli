@@ -1,0 +1,17 @@
+.card-filter-container {
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+
+  & .filter-item {
+    margin: 0 10px;
+  }
+  & .filter-item-category {
+    width: 45%;
+  }
+  & .filter-item-limit {
+    max-width: 20%;
+  }
+}

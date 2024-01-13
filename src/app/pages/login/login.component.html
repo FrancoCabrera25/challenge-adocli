@@ -1,0 +1,50 @@
+<div class="center-content">
+  <div class="title-header">
+    <h1>Login Form</h1>
+    <h3>Angular Demo</h3>
+  </div>
+  <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card class="card-container">
+      <img class="img" src="../../../assets/penguin-login.avif" alt="login" />
+
+      <mat-form-field class="full-width input-container">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" formControlName="email" />
+        @if (isValidField('email')) {
+        <mat-error>{{ getFieldError("email") }}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (isValidField('password')) {
+        <mat-error>{{ getFieldError("password") }}</mat-error>
+        }
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width"
+      >
+        Login
+      </button>
+      @if (errorLogin) {
+      <span>{{ errorLogin }}</span>
+      }
+    </mat-card>
+  </form>
+</div>

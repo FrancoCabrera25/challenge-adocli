@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="title">{{ product.title }}</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="img-container">
+    <img
+      [ngSrc]="product.image"
+      [alt]="product.title"
+      width="250"
+      height="300"
+      priority
+    />
+    <span class="category-text">{{ product.category }}</span>
+  </div>
+  <span>{{ product.description }}</span>
+
+  <div class="price-container">
+    <span>Price</span>
+    <span>${{ product.price }}</span>
+  </div>
+</div>

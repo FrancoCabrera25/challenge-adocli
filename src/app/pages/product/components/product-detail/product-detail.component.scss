@@ -1,0 +1,29 @@
+.modal-header {
+  display: flex;
+  align-items: center;
+  & .title {
+    margin: 0 !important;
+  }
+}
+
+.modal-body {
+  padding: 25px !important;
+  & .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+  }
+
+  & .category-text {
+    margin: 10px 0;
+  }
+
+  & .price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+}
