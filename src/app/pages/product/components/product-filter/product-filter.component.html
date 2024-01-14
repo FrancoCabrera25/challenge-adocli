@@ -2,11 +2,11 @@
   <mat-form-field appearance="outline" class="filter-item filter-item-category">
     <mat-label class="category-title">Category</mat-label>
     <mat-select
-      [(value)]="selectedCategory"
+      [value]="selectedCategory()"
       (selectionChange)="selectionChangeCategory($event)"
     >
       <mat-option [value]="'all'">all</mat-option>
-      @for (option of categoriesList$ | async; track option) {
+      @for (option of categoriesList(); track option) {
       <mat-option [value]="option">{{ option }}</mat-option>
       }
     </mat-select>
@@ -15,7 +15,7 @@
   <mat-form-field appearance="outline" class="filter-item filter-item-limit">
     <mat-label>Limit</mat-label>
     <mat-select
-      [(value)]="selectedLimit"
+      [value]="selectedLimit()"
       (selectionChange)="selectionChangeLimit($event)"
     >
       <mat-option [value]="5">5</mat-option>

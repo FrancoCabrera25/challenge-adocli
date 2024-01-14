@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import { ProductDetailComponent } from '../../pages/product/components/product-detail/product-detail.component';
-import { Product } from '../interface/product.interface';
+import { ProductDetailComponent } from '../../../pages/product/components/product-detail/product-detail.component';
+import { Product } from '../../interface/product.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private _baseUrl = 'https://fakestoreapi.com/products';
+   public baseUrl = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient, private modalService: NgbModal) {}
 
@@ -17,15 +17,15 @@ export class ProductService {
     let url = '';
     let limitPart = `?limit=${limit}`;
     if (category !== 'all') {
-      url = `${this._baseUrl}/category/${category}${limitPart}`;
+      url = `${this.baseUrl}/category/${category}${limitPart}`;
     } else {
-      url = `${this._baseUrl}${limitPart}`;
+      url = `${this.baseUrl}${limitPart}`;
     }
     return this.http.get(url);
   }
 
   getCategories(): Observable<string[]> {
-    return this.http.get<string[]>(`${this._baseUrl}/categories`);
+    return this.http.get<string[]>(`${this.baseUrl}/categories`);
   }
 
   showModalDetail(product: Product): NgbModalRef {

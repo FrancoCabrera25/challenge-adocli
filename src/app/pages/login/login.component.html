@@ -9,7 +9,7 @@
 
       <mat-form-field class="full-width input-container">
         <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" formControlName="email" />
+        <input matInput  formControlName="email" />
         @if (isValidField('email')) {
         <mat-error>{{ getFieldError("email") }}</mat-error>
         }
@@ -38,13 +38,15 @@
         mat-raised-button
         color="primary"
         type="submit"
-        class="full-width"
+        class="full-width btn-login"
       >
         Login
       </button>
       @if (errorLogin) {
-      <span>{{ errorLogin }}</span>
+      <span class="error">{{ errorLogin }}</span>
       }
+      <span class="demo"> user: <strong>{{ emailDemo }}</strong> password: <strong>{{ passwordDemo }}</strong></span>
     </mat-card>
+
   </form>
 </div>

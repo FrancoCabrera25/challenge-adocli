@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { ProductService } from '../../../../shared/services/product.service';
-import { Observable } from 'rxjs';
+import { ProductService } from '../../../../shared/services/product/product.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-product-filter',
   standalone: true,
@@ -12,11 +12,12 @@ import { Observable } from 'rxjs';
   templateUrl: './product-filter.component.html',
   styleUrl: './product-filter.component.scss',
 })
-export class ProductFilterComponent implements OnInit {
-  public selectedCategory = 'all';
-  public selectedLimit = 5;
-  public categoriesList$: Observable<string[]> = new Observable<string[]>();
-
+export class ProductFilterComponent {
+  public selectedCategory = signal<string>('all');
+  public selectedLimit = signal<number>(5);
+  public categoriesList = toSignal<string[]>(
+    this.productService.getCategories()
+  );
   @Output() filterSelected = new EventEmitter<{
     category: string;
     limit: number;
@@ -26,23 +27,20 @@ export class ProductFilterComponent implements OnInit {
 
   public limitList: number[] = [10, 15, 20, 25];
   constructor(private productService: ProductService) {}
-  ngOnInit(): void {
-    this.categoriesList$ = this.productService.getCategories();
-  }
 
   selectionChangeCategory({ value }: MatSelectChange): void {
-    this.selectedCategory = value;
+    this.selectedCategory.set(value);
     this.filterSelectedEmit();
   }
 
   selectionChangeLimit({ value }: MatSelectChange): void {
-    this.selectedLimit = value;
+    this.selectedLimit.set(value);
     this.filterSelectedEmit();
   }
   private filterSelectedEmit(): void {
     this.filterSelected.emit({
-      category: this.selectedCategory,
-      limit: this.selectedLimit,
+      category: this.selectedCategory(),
+      limit: this.selectedLimit(),
     });
   }
 }

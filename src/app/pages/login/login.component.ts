@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../../shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
 import {
   FormBuilder,
   FormGroup,
@@ -37,10 +37,21 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   get formValues() {
     return this.form.value;
+  }
+
+  get emailDemo(): string {
+    return this.authService.EMAIL_DEMO;
+  }
+  get passwordDemo(): string {
+    return this.authService.PASSWORD_DEMO;
   }
 
   isValidField(field: string): boolean | null {
@@ -73,7 +84,7 @@ export class LoginComponent {
         .pipe()
         .subscribe({
           next: () => {
-           this.router.navigate(['product-list']);
+            this.router.navigate(['product-list']);
           },
           error: (error) => {
             this.errorLogin = error;

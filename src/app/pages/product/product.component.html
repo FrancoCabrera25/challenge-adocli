@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <h1>Product list</h1>
-    <button mat-raised-button color="warn">Logout</button>
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
   </div>
   <div class="filter-container">
     <app-product-filter (filterSelected)="handleChangeFilters($event)" />

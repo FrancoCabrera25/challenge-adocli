@@ -1,9 +1,9 @@
 .container {
- // width: 1025px; /* Ancho fijo en píxeles o cualquier otra unidad que prefieras */
   margin-right: auto;
   margin-left: auto;
   padding-right: 35px;
   padding-left: 35px;
+  padding-bottom: 35px;
 
    & .header {
     display: flex;
@@ -19,5 +19,4 @@
 .content {
   background-color: #f0f0f0;
   padding: 20px;
-  // margin-top: 20px;
 }
