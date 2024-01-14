@@ -4,7 +4,7 @@
     <button mat-raised-button color="warn" (click)="logout()">Logout</button>
   </div>
   <div class="filter-container">
-    <app-product-filter (filterSelected)="handleChangeFilters($event)" />
+    <app-product-filter (filterSelected)="handleChangeFilters($event)"  data-testid="change-filter" />
   </div>
 
   <app-product-table [productList]="productList" (selectedProduct)="showDetail($event)" />

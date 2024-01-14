@@ -26,6 +26,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr
     mat-row
+    data-testid="row-selected"
     (click)="handleSelectedRow(row)"
     [class.row-is-clicked]="this.selectedRow === row"
     *matRowDef="let row; columns: displayedColumns"

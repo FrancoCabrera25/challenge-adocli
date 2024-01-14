@@ -22,9 +22,6 @@ export class ProductFilterComponent {
     category: string;
     limit: number;
   }>();
-
-  @Output() filter = new EventEmitter<void>();
-
   public limitList: number[] = [10, 15, 20, 25];
   constructor(private productService: ProductService) {}
 
