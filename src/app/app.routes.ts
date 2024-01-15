@@ -12,13 +12,13 @@ import {
 
 export const routes: Routes = [
   {
-    component: LoginComponent,
+    loadComponent: () => LoginComponent,
     path: 'login',
     canActivate: [loginGuardCanActivate],
     canMatch: [loginGuardCanMatch],
   },
   {
-    component: ProductComponent,
+    loadComponent: () => ProductComponent,
     path: 'product-list',
     canActivate: [authGuardCanActivate],
     canMatch: [authGuardCanMatch],
